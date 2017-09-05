@@ -1,0 +1,40 @@
+<!--
+Generated template for the DetallePage page.
+
+See http://ionicframework.com/docs/components/#navigation for more info on
+Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{ lista.name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-item>
+        <ion-label floating>Nombre de la lista</ion-label>
+        <ion-input type="text"
+        [(ngModel)]="lista.name"
+        ></ion-input>
+      </ion-item>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let item of lista.items" (click)="actualizar(item)">
+          <ion-icon item-left *ngIf="!item.complete" ios="ios-square-outline" md="md-square-outline"></ion-icon>
+          <ion-icon class="hecho" item-left *ngIf="item.complete" ios="ios-checkbox-outline" md="md-checkbox-outline"></ion-icon>
+          <h2 [class.tachado]="item.complete">{{item.name}}</h2>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <button ion-button (click)="borrarLista(lista)" class="button-block" color="danger">Borrar Lista</button>
+</ion-content>
