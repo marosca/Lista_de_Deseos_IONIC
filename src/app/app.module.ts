@@ -5,7 +5,8 @@ import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 
 //pipes
-import { TextoPorDefectoPipe } from '../pipes/texto-por-defecto/texto-por-defecto';
+import { TextoPorDefectoPipe } from '../pipes/texto-por-defecto/texto-por-defecto.pipe';
+import { PendientesPipe } from '../pipes/pendientes/pendientes.pipe';
 
 //pages (en ionic los componentes son llamados pages... pero es lo mismo)
 import { PendientesPage } from '../pages/pendientes/pendientes';
@@ -29,7 +30,8 @@ import { ListaDeseosProvider } from '../providers/lista-deseos/lista-deseos.serv
     TabsPage,
 	  AgregarPage,
     DetallePage,
-    TextoPorDefectoPipe
+    TextoPorDefectoPipe,
+	PendientesPipe
   ],
   imports: [
     HttpModule,

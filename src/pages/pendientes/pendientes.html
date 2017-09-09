@@ -15,29 +15,48 @@ Ionic pages and navigation.
 
 <ion-content padding>
 
-    <ion-card *ngFor="let lista of _listaDeseosService.listas; let i = index;">
+    <div class="teclado">
+        <div class="tecla border-right border-bottom">1</div>
+        <div class="tecla border-right border-bottom">2</div>
+        <div class="tecla border-bottom">3</div>
+        <div class="tecla border-right border-bottom">4</div>
+        <div class="tecla border-bottom border-right">5</div>
+        <div class="tecla border-bottom">6</div>
+        <div class="tecla border-right">7</div>
+        <div class="tecla border-right">8</div>
+        <div class="tecla">9</div>
 
-            <ion-item color="dark" (click)="verDetalle(lista, i)">
-                <h2 style="color:white">{{ lista.name }}</h2>
-                <ion-note item-right color="light">{{ lista.items.length}} items</ion-note>
+    </div>
+    <ion-grid *ngIf="(_listaDeseosService.listas|pendientes).length == 0">
+        <ion-row>
+            <ion-col class="text-center caja-vacia">
+                <!-- Advanced: explicity set the icon for each platform -->
+                <ion-icon class="icono-grande" ios="ios-bulb" md="md-bulb"></ion-icon>
+                <p>No hay ninguna lista</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-card *ngFor="let lista of _listaDeseosService.listas | pendientes; let i = index;">
+        <!-- <div *ngIf="!lista.complete" > -->
+        <ion-item color="dark" (click)="verDetalle(lista, i)">
+            <h2 style="color:white">{{ lista.name }}</h2>
+            <ion-note item-right color="light">{{ lista.items.length}} items</ion-note>
+        </ion-item>
+        <ion-list>
+
+            <ion-item *ngFor="let item of lista.items | slice:0:2; let idx =index" (click)="verDetalle(lista, i)">
+                <ion-icon item-left *ngIf="!item.complete" ios="ios-square-outline" md="md-square-outline"></ion-icon>
+                <ion-icon class="hecho" item-left *ngIf="item.complete" ios="ios-checkbox-outline" md="md-checkbox-outline"></ion-icon>
+                <h2 [class.tachado]="item.complete">{{item.name}}</h2>
             </ion-item>
 
-            <ion-list>
+            <ion-item text-center *ngIf="lista.items.length > 2">
+                <ion-icon color="primary" ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>
+            </ion-item>
 
-                <ion-item  *ngFor="let item of lista.items | slice:0:2; let idx = index" (click)="verDetalle(lista, i)">
-                    <!-- <ion-label>{{item.name}}</ion-label>
-                    <ion-checkbox color="dark" checked="false"></ion-checkbox> -->
-                    <ion-icon item-left *ngIf="!item.complete" ios="ios-square-outline" md="md-square-outline"></ion-icon>
-                    <ion-icon item-left *ngIf="item.complete" ios="ios-checkbox-outline" md="md-checkbox-outline"></ion-icon>
-                    <h3>{{item.name}}</h3>
-                </ion-item>
-
-                <ion-item text-center *ngIf="lista.items.length > 2">
-                    <ion-icon color="primary" ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>
-                </ion-item>
-
-            </ion-list>
-
+        </ion-list>
+        <!-- </div> -->
     </ion-card>
 
     <ion-fab right bottom (click) = "irAgregar()">

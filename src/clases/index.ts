@@ -1,2 +1,2 @@
 export { Item } from './item';
-export { Lista } from './lista'
+export { Lista } from './lista';

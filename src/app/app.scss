@@ -29,3 +29,43 @@
 .hecho{
     color:red!important;
 }
+
+.caja-vacia{
+    color: #C7C7C7;
+    padding-top: 40%;
+
+}
+.caja-vacia p {
+    font-size: 30px;
+}
+.icono-grande{
+	font-size: 100px
+}
+
+div.teclado {
+    box-sizing: border-box;
+}
+.tecla{
+    display: block;
+    width: 32%;
+    text-align: center;
+    float: left;
+    font-size: 2em;
+    padding: 20px
+}
+.tecla:hover{
+    background: rgb(178, 242, 162);
+    color: white
+}
+.border-left{
+    border-left: 1px solid #c7c7c7;
+}
+.border-right{
+    border-right: 1px solid #c7c7c7;
+}
+.border-top{
+    border-top: 1px solid #c7c7c7;
+}
+.border-bottom{
+    border-bottom: 1px solid #c7c7c7;
+}
